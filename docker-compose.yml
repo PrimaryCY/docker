@@ -19,7 +19,7 @@ services:
     container_name: mysql
     image: mysql:5.7.27
     ports:
-      - "3307:3306"
+      - "3306:3306"
     command: [                                       #使用 command 可以覆盖容器启动后默认执行的命令
       '--character-set-server=utf8mb4',              #设置数据库表的数据集
       '--collation-server=utf8mb4_unicode_ci',       #设置数据库表的数据集
@@ -30,4 +30,11 @@ services:
       MYSQL_DATABASE: swapping                             #设置初始的数据库名
       MYSQL_ROOT_PASSWORD: oracle                        #设置root连接密码
       MYSQL_ROOT_HOST: '%'
-
+  jenkins:
+    container_name: jenkins
+    image: jenkins:2.60.3-alpine
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - '/var/jenkins_home:/var/jenkins_home'
