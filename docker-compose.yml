@@ -1,0 +1,33 @@
+version: "3.4"
+
+x-default:
+  depends_on:
+    - mysql
+    - redis
+  environment:
+    - REDIS_HOST=redis
+    - TZ=Asia/Shanghai
+
+services:
+  redis:
+    container_name: redis
+    image: redis:4.0.14
+    ports:
+      - "6378:6379"
+    restart: unless-stopped
+  mysql:
+    container_name: mysql
+    image: mysql:5.27
+    ports:
+      - "3307:3306"
+    command: [                                       #使用 command 可以覆盖容器启动后默认执行的命令
+      '--character-set-server=utf8mb4',              #设置数据库表的数据集
+      '--collation-server=utf8mb4_unicode_ci',       #设置数据库表的数据集
+      '--default-time-zone=+8:00'                    #设置mysql数据库的 时区问题！！！！ 而不是设置容器的时区问题！！！！
+    ]
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: swapping                             #设置初始的数据库名
+      MYSQL_ROOT_PASSWORD: oracle                        #设置root连接密码
+      MYSQL_ROOT_HOST: '%'
+
