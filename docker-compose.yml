@@ -17,7 +17,7 @@ services:
     restart: unless-stopped
   mysql:
     container_name: mysql
-    image: mysql:5.27
+    image: mysql:5.72
     ports:
       - "3307:3306"
     command: [                                       #使用 command 可以覆盖容器启动后默认执行的命令
