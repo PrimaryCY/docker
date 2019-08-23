@@ -40,10 +40,6 @@ services:
       - '/var/jenkins_home:/var/jenkins_home'
     #容器用户=root
     user: root
-    #定义IP网络
-    networks:
-      staticneta:
-        ipv4_address: 172.20.1.6
     #环境变量
     environment:
       - TZ=Asia/Shanghai
