@@ -1,0 +1,4 @@
+FROM ubuntu
+MAINTAINER 907031027@qq.com
+RUN apt install vim
+WORKDIR /
