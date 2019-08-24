@@ -36,13 +36,15 @@ services:
       '--character-set-server=utf8mb4',              #设置数据库表的数据集
       '--collation-server=utf8mb4_unicode_ci',       #设置数据库表的数据集
       '--default-time-zone=+8:00',                    #设置mysql数据库的 时区问题！！！！ 而不是设置容器的时区问题！！！！
-      '-default-authentication-plugin=mysql_native_password' # 这行解决客户端连接不了问题
     ]
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: swapping                             #设置初始的数据库名
       MYSQL_ROOT_PASSWORD: oracle                        #设置root连接密码
       MYSQL_ROOT_HOST: '%'
+    volumes:
+      - "/db:/var/lib/mysql"                #数据库表文件
+      - "/etc/conf.d:/etc/mysql/conf.d"
   jenkins:
     container_name: jenkins
     image: jenkins/jenkins:2.190-alpine
