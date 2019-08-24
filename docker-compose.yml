@@ -3,8 +3,8 @@ version: "3.4"
 # 重用的代码模板
 # 模板的定义必须以 x- 开头
 x-logging:
-	# 以 & 开头的字符串为模板命名
-	# 以 * 加上模板的名称引用模板
+  # 以 & 开头的字符串为模板命名
+  # 以 * 加上模板的名称引用模板
   &default-logging
   driver: json-file
   options:
