@@ -11,8 +11,9 @@ x-default:
 services:
   web:
     container_name: web
-    context: .
-    dockerfile: WebDockerfile
+    build:
+      context: .
+      dockerfile: WebDockfile
     depends_on:
       - mysql
   redis:
