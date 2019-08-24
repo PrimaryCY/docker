@@ -1,7 +1,6 @@
 version: "3.4"
 
-# 重用的代码模板
-# 模板的定义必须以 x- 开头
+
 x-logging:
   # 以 & 开头的字符串为模板命名
   # 以 * 加上模板的名称引用模板
@@ -19,14 +18,17 @@ services:
       dockerfile: WebDockfile
     depends_on:
       - mysql
+      - redis
     user: root
     tty: true
+
   redis:
     container_name: redis
     image: redis:4.0.14
     ports:
       - "6378:6379"
     restart: unless-stopped
+
   mysql:
     container_name: mysql
     image: mysql:5.7.27
@@ -45,6 +47,7 @@ services:
     volumes:
       - "/db:/var/lib/mysql"                #数据库表文件
       - "/etc/conf.d:/etc/mysql/conf.d"
+
   jenkins:
     container_name: jenkins
     image: jenkins/jenkins:2.190-alpine
