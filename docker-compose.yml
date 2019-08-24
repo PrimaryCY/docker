@@ -9,6 +9,12 @@ x-default:
     - TZ=Asia/Shanghai
 
 services:
+  web:
+    container_name: web
+    context: .
+    dockerfile: WebDockerfile
+    depends_on:
+      - mysql
   redis:
     container_name: redis
     image: redis:4.0.14
