@@ -54,6 +54,7 @@ services:
     restart: unless-stopped
     ports:
       - "8080:8080"
+      - "39393:39393"
     volumes:
       - '/var/jenkins_home:/var/jenkins_home'
     #容器用户=root
